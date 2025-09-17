@@ -174,5 +174,40 @@ public class ArrayListPractice {
         //GIVEN TWO LISTS FIND THE UNION - ALL ELEMENTS
         //FIND MEDIAN OF LIST -> ODD/EVEN CASES (ODD -> MEDIAN, EVEN - BOTH / 2.0)
         //CUSTOM SORT ARRAYLIST
+
+        //REMOVE DUPLCIATES WHILE PRESERVING INSERTION ORDER WITHOUT LINKEDHASHSET
+        List<Integer> nums = new ArrayList<>(Arrays.asList(1, 2, 4, 6, 5, 2, 4));
+        System.out.println("With Duplicates: "+nums);
+        HashMap<Integer, Integer> freq = new LinkedHashMap<>();
+        List<Integer> uniqueNums = new ArrayList<>();
+        for(i=0; i<nums.size(); i++){
+            if(!freq.containsKey(nums.get(i))){
+                uniqueNums.add(nums.get(i));
+            }
+            freq.put(nums.get(i), i);
+        }
+        System.out.println("Removed Duplicate Nums: "+uniqueNums);
+
+        //REMOVE DUPLICATES WITHOUT INSERTION ORDER
+        List<Integer> noOrder = new ArrayList<>(new HashSet<>(nums));
+        System.out.println("With no insertion order: "+noOrder);
+
+
+        //UNIQUE REPEATERS - RETURN A LIST OF ELEMENTS THAT APPEAR MORE THAN ONCE -> DO USING ARRAYLIST
+        List<Integer> repeaterElement = new ArrayList<>();
+
+        for(i=0; i<nums.size(); i++){
+            int count = 0;
+            for(j=0; j<nums.size(); j++){
+                if(nums.get(i) == nums.get(j)){
+                    count++;
+                }
+            }
+            if(count > 1 && (!repeaterElement.contains(nums.get(i)))){
+                repeaterElement.add(nums.get(i));
+            }
+        }
+        System.out.println("Repeater Elements: "+repeaterElement);
+
     }
 }
